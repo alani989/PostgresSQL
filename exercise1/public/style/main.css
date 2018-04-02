@@ -1,0 +1,17 @@
+body {
+    font-family: 'Trebuchet MS' !important;
+}
+.formHeader {
+    background-color: grey;
+    color: whitesmoke;
+    padding: 2%;
+}
+.formDiv {
+    border: 1px solid gray;  
+}
+#StudentForm {
+    padding: 4%;
+}
+.resultDiv {
+    border: 1px solid gray;  
+}
