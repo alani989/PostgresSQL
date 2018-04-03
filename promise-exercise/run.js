@@ -2,6 +2,8 @@ var rp = require('request-promise');
 var express = require('express');
 var app = express();
 
+app.set('view engine', 'ejs');
+
 urls = [
     'https://en.wikipedia.org/wiki/Futures_and_promises',
     'https://en.wikipedia.org/wiki/Continuation-passing_style',
@@ -13,8 +15,10 @@ urls = [
 // using promise-request
 const htmlPage = {
     method: 'GET',
-    url: urls[3]
+    url: urls[0],
+    json: true
 };
+
 
 rp(htmlPage)
     .then(function (data) {
@@ -26,29 +30,29 @@ rp(htmlPage)
 
 
 // promise.all
-// var l1 = new Promise(function (resolve, reject) {
-//     resolve(urls[0]);
-// });
-// var l2 = new Promise(function (resolve, reject) {
-//     resolve(urls[1]);
-// });
-// var l3 = new Promise(function (resolve, reject) {
-//     resolve(urls[2]);
-// });
-// var l4 = new Promise(function (resolve, reject) {
-//     resolve(urls[3]);
-// });
-// var l5 = new Promise(function (resolve, reject) {
-//     resolve(urls[4]);
-// });
+var l1 = new Promise(function (resolve, reject) {
+    resolve(urls[0]);
+});
+var l2 = new Promise(function (resolve, reject) {
+    resolve(urls[1]);
+});
+var l3 = new Promise(function (resolve, reject) {
+    resolve(urls[2]);
+});
+var l4 = new Promise(function (resolve, reject) {
+    resolve(urls[3]);
+});
+var l5 = new Promise(function (resolve, reject) {
+    resolve(urls[4]);
+});
 
-// Promise.all([l1,l2,l3,l4,l5])
-//     .then(function(data){
-//         console.log(data);
-//     })
-//     .catch(function(err){
-//         console.log(err);
-//     });
+Promise.all([l1,l2,l3,l4,l5])
+    .then(function(data){
+        console.log(data);
+    })
+    .catch(function(err){
+        console.log(err);
+    });
 
 
 var server = app.listen(3000, function () {
