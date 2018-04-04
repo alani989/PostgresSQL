@@ -12,45 +12,44 @@ urls = [
     'https://en.wikipedia.org/wiki/Google_Chrome'
 ];
 
-// using promise-request
-const htmlPage = {
-    method: 'GET',
-    url: urls[0],
-    json: true
-};
+// // using promise-request
+// const htmlPage = {
+//     method: 'GET',
+//     url: urls[0],
+//     json: true
+// };
+
+// rp(htmlPage)
+//     .then(function (data) {
+//         console.log(data);
+//     })
+//     .catch(function (err) {
+//         console.log(err);
+//     });
 
 
-rp(htmlPage)
+// promise.all
+var p1 = new Promise(function (resolve, reject) {
+    resolve(urls[0]);
+});
+var p2 = new Promise(function (resolve, reject) {
+    resolve(urls[1]);
+});
+var p3 = new Promise(function (resolve, reject) {
+    resolve(urls[2]);
+});
+var p4 = new Promise(function (resolve, reject) {
+    resolve(urls[3]);
+});
+var p5 = new Promise(function (resolve, reject) {
+    resolve(urls[4]);
+});
+
+Promise.all([p2, p1, p3, p4, p5])
     .then(function (data) {
         console.log(data);
     })
     .catch(function (err) {
-        console.log(err);
-    });
-
-
-// promise.all
-var l1 = new Promise(function (resolve, reject) {
-    resolve(urls[0]);
-});
-var l2 = new Promise(function (resolve, reject) {
-    resolve(urls[1]);
-});
-var l3 = new Promise(function (resolve, reject) {
-    resolve(urls[2]);
-});
-var l4 = new Promise(function (resolve, reject) {
-    resolve(urls[3]);
-});
-var l5 = new Promise(function (resolve, reject) {
-    resolve(urls[4]);
-});
-
-Promise.all([l1,l2,l3,l4,l5])
-    .then(function(data){
-        console.log(data);
-    })
-    .catch(function(err){
         console.log(err);
     });
 
