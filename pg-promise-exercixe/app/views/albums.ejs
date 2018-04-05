@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My Albums Collection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+</head>
+<body>
+        <body>
+                <% if (albums.length > 0) { %>
+                <% for (i=0; i< albums.length; i++) { %>
+                    <h1><%= albums[i].name %></h1>
+                    <h1><%= albums[i].year %></h1>
+                    <h1><%= albums[i].artist_id %></h1>
+                    <br>
+                <% } %>
+                <% } %>
+        </body>
+</body>
+</html>
