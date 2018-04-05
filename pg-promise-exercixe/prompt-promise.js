@@ -1,3 +1,4 @@
+// require packages/libraries
 var prompt = require('prompt-promise');
 var promise = require('bluebird');
 
@@ -11,23 +12,50 @@ var pgp = require('pg-promise')(options);
 var conn = 'postgres://localhost:5432/pgpromise';
 var db = pgp(conn);
 
-var data = [];
+var album = [];
+var artist = [];
+var track = [];
 
+// promises for album table
 prompt('Album: ')
-    .then(function album(val) {
-        data.push(val);
+    .then(function albumName(val) {
+        album.push(val);
         return prompt('Year: ')
     })
-    .then(function year(val) {
-        data.push(val);
+    .then(function albumYear(val) {
+        album.push(val);
         return prompt('Artist ID: ');
     })
-    .then(function id(val) {
-        data.push(val);
+    .then(function albumId(val) {
+        album.push(val);
+        return prompt('Artist Name: ');
     })
-    .then(function updateTable() {
+    .then(function artistName(val){
+        artist.push(val)
+        return prompt('Track Name: ');
+    })
+    .then(function trackName(val){
+        track.push(val)
+        return prompt('Duration: ');
+    })
+    .then(function trackDuration(val){
+        track.push(val)
+        return prompt('Track ID: ');
+    })
+    .then(function trackID(val){
+        track.push(val)
+    })
+    .then(function updateAlbum() {
         db.none('INSERT INTO album(name,year,artist_id) values($1,$2,$3)',
-            [data[0], data[1], data[2]]);
+            [album[0], album[1], album[2]])
+    })
+    .then(function updateArtist() {
+        db.none('INSERT INTO artist(name, id) values($1,$2)',
+            [artist[0],album[2]])
+    })
+    .then(function updateTrack(idd) {
+        db.none('INSERT INTO track(name,album_id,duration) values($1,$2,$3)',
+            [track[0], track[2], track[1]])
             prompt.done(
                 function(){
                     db.$pool.end();
